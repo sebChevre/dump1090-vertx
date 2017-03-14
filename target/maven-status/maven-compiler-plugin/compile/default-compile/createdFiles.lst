@@ -1,0 +1,8 @@
+ch/sebooom/dump1090/properties/PropertiesKey.class
+ch/sebooom/dump1090/sbs1/SBS1Message.class
+ch/sebooom/dump1090/app/TCPListener.class
+ch/sebooom/dump1090/logs/JsonLogUtil.class
+ch/sebooom/dump1090/app/AppMain.class
+ch/sebooom/dump1090/logs/LogType.class
+ch/sebooom/dump1090/logs/EventType.class
+ch/sebooom/dump1090/properties/AppProperties.class

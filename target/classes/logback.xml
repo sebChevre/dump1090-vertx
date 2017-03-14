@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+
+	<property name="DEV_HOME" value="logs" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+
+
+	<appender name="FILE-JSON"
+	          class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/dump1090-${bySecond}.log</file>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+	<!--<appender name="FILE-AUDIT"
+	          class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/debug.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			&lt;!&ndash; rollover daily &ndash;&gt;
+			<fileNamePattern>${DEV_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>-->
+
+	<appender name="FILE-ERROR"
+	          class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DEV_HOME}/error/error-dump1090-${bySecond}.log</file>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${DEV_HOME}/archived/error.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+
+	</appender>
+
+	<!-- Send logs to both console and file audit -->
+	<!-- all logs -->
+	<!--<logger level="all"
+	        additivity="false">
+		<appender-ref ref="FILE-AUDIT-JSON" />
+		&lt;!&ndash;<appender-ref ref="STDOUT" />&ndash;&gt;
+	</logger>-->
+
+
+
+	<root level="ERROR">
+		<appender-ref ref="FILE-ERROR" />
+	</root>
+
+	<root level="INFO">
+		<appender-ref ref="FILE-JSON" />
+	</root>
+
+</configuration>

@@ -1,0 +1,1 @@
+{"@timestamp":"2017-03-14T19:56:26.504+01:00","@version":1,"message":"Error during loading properties file [./sconfig/config.properties] - System exit now","logger_name":"ch.sebooom.dump1090.properties.AppProperties","thread_name":"main","level":"ERROR","level_value":40000,"HOSTNAME":"MacBook-Air-de-SEB.local","logType":"TECHNICAL","eventType":"PROPERTIES"}
